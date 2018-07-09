@@ -1,10 +1,10 @@
 boto3==1.4.4
-botocore==1.5.62
+botocore>=1.5.62,<2.0.0
 click==6.6
-docutils==0.12
-jmespath==0.9.0
+docutils>=0.12,<0.15
+jmespath>=0.9.0,<0.10.0
 pyaml==15.8.2
-python-dateutil==2.5.3
-PyYAML==3.11
-six==1.10.0
+python-dateutil>=2.5.3,<2.8.0
+PyYAML>=3.11,<3.14
+six>=1.10.0,<1.12.0
 futures; python_version <= "3.0"
