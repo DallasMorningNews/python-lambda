@@ -1,40 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-
-try: # for pip >= 10
-    from pip._internal import download
-except ImportError: # for pip <= 9.0.3
-    from pip import download
-
 from setuptools import find_packages
 from setuptools import setup
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-requirements = parse_requirements(
-    'requirements.txt', session=download.PipSession(),
-)
-
-pip_requirements = [str(r.req) for r in requirements]
-
-# Only install futures package if using a Python version <= 2.7
-if sys.version_info < (3, 0):
-    pip_requirements.append('futures')
-
-test_requirements = [
-    # TODO: put package test requirements here
-]
-
 setup(
-    name='python-lambda',
-    version='3.2.3',
+    name='dmn-python-lambda',
+    version='3.3.0',
     description='The bare minimum for a Python app running on Amazon Lambda.',
     long_description=readme,
     author='Nick Ficano',
@@ -47,7 +21,18 @@ setup(
     },
     include_package_data=True,
     scripts=['scripts/lambda'],
-    install_requires=pip_requirements,
+    install_requires=[
+        'boto3==1.4.4',
+        'botocore==1.5.62',
+        'click==6.6',
+        'docutils==0.12',
+        'jmespath==0.9.0',
+        'pyaml==15.8.2',
+        'python-dateutil==2.5.3',
+        'PyYAML==3.11',
+        'six==1.10.0',
+        'futures; python_version < "3.0"',
+    ],
     license='ISCL',
     zip_safe=False,
     keywords='python-lambda',
@@ -66,5 +51,5 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
-    tests_require=test_requirements,
+    tests_require=[],
 )
